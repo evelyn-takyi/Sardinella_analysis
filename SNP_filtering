@@ -1,0 +1,573 @@
+## SNP filtering code for SNPs from  new samples and newly assembled reference
+
+(ddocent_env) [evelyn-takyi@n047 aurita]$ vcftools --vcf TotalRawSNPs.vcf --recode-INFO-all --minDP 5 --out TRSdp5 --recode
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf TotalRawSNPs.vcf
+	--recode-INFO-all
+	--minDP 5
+	--out TRSdp5
+	--recode
+
+After filtering, kept 72 out of 72 Individuals
+Outputting VCF file...
+After filtering, kept 100576 out of a possible 100576 Sites
+Run Time = 31.00 seconds
+(ddocent_env) [evelyn-takyi@n047 aurita]$ ./pop_missing_filter.sh TRSdp5.recode.vcf popmap 0.25 0 TRSdp5MIp25
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf TRSdp5.recode.vcf
+	--keep keep.Saurita
+	--out Saurita
+	--missing-site
+
+Keeping individuals in 'keep' list
+After filtering, kept 72 out of 72 Individuals
+Outputting Site Missingness
+After filtering, kept 100576 out of a possible 100576 Sites
+Run Time = 3.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf TRSdp5.recode.vcf
+	--exclude-positions loci.to.remove
+	--recode-INFO-all
+	--out TRSdp5MIp25
+	--recode
+
+After filtering, kept 72 out of 72 Individuals
+Outputting VCF file...
+After filtering, kept 39 out of a possible 100576 Sites
+Run Time = 2.00 seconds
+(ddocent_env) [evelyn-takyi@n047 aurita]$ ./ddocent_filters.sh TRSdp5MIp25.recode.vcf  TRSdp5MIp25g9
+This script will automatically filter a FreeBayes generated VCF file using criteria related to site depth,
+quality versus depth, strand representation, allelic balance at heterzygous individuals, and paired read representation.
+The script assumes that loci and individuals with low call rates (or depth) have already been removed. 
+
+Contact Jon Puritz (jpuritz@gmail.com) for questions and see script comments for more details on particular filters 
+
+Number of sites filtered based on allele balance at heterozygous loci, locus quality, and mapping quality / Depth
+ 33 of 39 
+
+Are reads expected to overlap?  In other words, is fragment size less than 2X the read length?  Enter yes or no.
+^[[A^C
+(ddocent_env) [evelyn-takyi@n047 aurita]$ ./pop_missing_filter.sh TRSdp5.recode.vcf popmap 0.75 0 TRSdp5MIp25
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf TRSdp5.recode.vcf
+	--keep keep.Saurita
+	--out Saurita
+	--missing-site
+
+Keeping individuals in 'keep' list
+After filtering, kept 72 out of 72 Individuals
+Outputting Site Missingness
+After filtering, kept 100576 out of a possible 100576 Sites
+Run Time = 4.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf TRSdp5.recode.vcf
+	--exclude-positions loci.to.remove
+	--recode-INFO-all
+	--out TRSdp5MIp25
+	--recode
+
+After filtering, kept 72 out of 72 Individuals
+Outputting VCF file...
+After filtering, kept 11855 out of a possible 100576 Sites
+Run Time = 5.00 seconds
+(ddocent_env) [evelyn-takyi@n047 aurita]$ ./ddocent_filters.sh TRSdp5MIp25.recode.vcf  TRSdp5MIp25g9
+This script will automatically filter a FreeBayes generated VCF file using criteria related to site depth,
+quality versus depth, strand representation, allelic balance at heterzygous individuals, and paired read representation.
+The script assumes that loci and individuals with low call rates (or depth) have already been removed. 
+
+Contact Jon Puritz (jpuritz@gmail.com) for questions and see script comments for more details on particular filters 
+
+Number of sites filtered based on allele balance at heterozygous loci, locus quality, and mapping quality / Depth
+ 8499 of 11855 
+
+Are reads expected to overlap?  In other words, is fragment size less than 2X the read length?  Enter yes or no.
+no
+Number of additional sites filtered based on overlapping forward and reverse reads
+ 1445 of 3356 
+
+Is this from a mixture of SE and PE libraries? Enter yes or no.
+no
+Number of additional sites filtered based on properly paired status
+ 127 of 1911 
+
+Number of sites filtered based on high depth and lower than 2*DEPTH quality score
+ 974 of 1784 
+
+
+                                                                                                                        
+                                             Histogram of mean depth per site                                           
+                                                                                                                        
+  100 +-+-+---+--+---+---+---+---+--+---+---+---+---+--+---+---+---+--+---+---+---+---+--+---+---+---+---+--+---+-+-+   
+      +   *****  +   +   +   +   +  +   +   +   +   +  +   +   +   +  +   +   +   +   +  +   +   +   +   +  +   +   +   
+   90 +-+ *   *                                           'meandepthpersite' using (bin($1,binwidth)):(1.0) *******-+   
+      *****   ****                                                                                                  |   
+      *   *   *  *                                                                                                  |   
+   80 *-+ *   *  *                                                                                                +-+   
+      *   *   *  *                                                                                                  |   
+   70 *-+ *   *  *                                                                                                +-+   
+      *   *   *  *                                                                                                  |   
+   60 *-+ *   *  *   *****                                                                                        +-+   
+      *   *   *  *   *   *                                                                                          |   
+   50 *-+ *   *  *****   *                                                                                        +-+   
+      *   *   *  *   *   *                                                                                          |   
+      *   *   *  *   *   *                                                                                          |   
+   40 *-+ *   *  *   *   *          *****                                                                         +-+   
+      *   *   *  *   *   *          *   *                                                                           |   
+   30 *-+ *   *  *   *   ************   *                                                                         +-+   
+      *   *   *  *   *   *   *   *  *   *********      *****                                                        |   
+   20 *-+ *   *  *   *   *   *   *  *   *   *   *      *   *                                                      +-+   
+      *   *   *  *   *   *   *   *  *   *   *   *      *   *****                                                    |   
+      *   *   *  *   *   *   *   *  *   *   *   *****  *   *   *      *****                                         |   
+   10 *-+ *   *  *   *   *   *   *  *   *   *   *   ****   *   *****  *   *              *****   *****   ******** +-+   
+      *   *   *  *   *   *   *   *  *   *   *   *   *  *   *   *   *  *   *****   *****  *   *   *   *****  *   *****   
+    0 ***************************************************************************************************************   
+      10  11  12 13  14  15  16  17 18  19  20  21  22 23  24  25  26 27  28  29  30  31 32  33  34  35  36 37  38  39  
+                                                        Mean Depth                                                      
+                                                                                                                        
+If distrubtion looks normal, a 1.645 sigma cutoff (~90% of the data) would be 2251.57137
+The 95% cutoff would be 36
+Would you like to use a different maximum mean depth cutoff than 36, yes or no
+no
+Number of sites filtered based on maximum mean depth
+ 128 of 1784 
+
+Number of sites filtered based on within locus depth mismatch
+ 5 of 1652 
+
+Total number of sites filtered
+ 10208 of 11855 
+
+Remaining sites
+ 1647 
+
+Filtered VCF file is called Output_prefix.FIL.recode.vcf
+
+Filter stats stored in TRSdp5MIp25g9.filterstats
+(ddocent_env) [evelyn-takyi@n047 aurita]$ vcfallelicprimitives -k -g TRSdp5MIp25g9.FIL.recode.vcf | sed 's:\.|\.:\.\/\.:g' > TRSdp5MIp25g9.prim
+(ddocent_env) [evelyn-takyi@n047 aurita]$ vcftools --vcf TRSdp5MIp25g9.prim --recode-INFO-all --recode --out SNP.TRSdp5MIp25g9 --remove-indels
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf TRSdp5MIp25g9.prim
+	--recode-INFO-all
+	--out SNP.TRSdp5MIp25g9
+	--recode
+	--remove-indels
+
+After filtering, kept 72 out of 72 Individuals
+Outputting VCF file...
+After filtering, kept 1842 out of a possible 1965 Sites
+Run Time = 2.00 seconds
+(ddocent_env) [evelyn-takyi@n047 aurita]$ filter_hwe_by_pop.pl -v SNP.TRSdp5MIp25g9.recode.vcf -p popmap -c 0.5 -o SNP.TRSdp5MIp25g9HWE
+Processing population: Saurita (72 inds)
+Outputting results of HWE test for filtered loci to 'filtered.hwe'
+Kept 1331 of a possible 1842 loci (filtered 511 loci)
+(ddocent_env) [evelyn-takyi@n047 aurita]$ vcftools --vcf SNP.TRSdp5MIp25g9HWE.recode.vcf --recode-INFO-all --out SNP.TRSdp5MIp25g9HWE2a --recode --max-alleles 2
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf SNP.TRSdp5MIp25g9HWE.recode.vcf
+	--recode-INFO-all
+	--max-alleles 2
+	--out SNP.TRSdp5MIp25g9HWE2a
+	--recode
+
+After filtering, kept 72 out of 72 Individuals
+Outputting VCF file...
+After filtering, kept 1297 out of a possible 1331 Sites
+Run Time = 1.00 seconds
+(ddocent_env) [evelyn-takyi@n047 aurita]$ source deactivate ddocent_Env
+[evelyn-takyi@n047 aurita]$ source activate rad_haplotyper_env
+(rad_haplotyper_env) [evelyn-takyi@n047 aurita]$ rad_haplotyper.pl -v SNP.TRSdp5MIp25g9HWE2a.recode.vcf -p popmap -r reference.fasta -x 10 -mp 1 -g Final.gen
+
+###  (rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ less Final.gen 
+
+Saurita_GA_3H,  
+Saurita_GA_4G,  
+Saurita_GA_4H,  
+Saurita_GA_5G,  
+Saurita_GA_5H,  
+Saurita_GA_6G,  
+Saurita_GA_7G,  
+Saurita_GA_7H,  
+Saurita_GA_8G,  
+Saurita_GA_8H,  
+Saurita_GA_9G,  
+Saurita_GA_9H,  
+Saurita_GHA_1B, 
+Saurita_GHA_2B, 
+Saurita_GHA_3B, 
+Saurita_GHA_4B, 
+Saurita_GHA_5B, 
+Saurita_MA_1A,  
+Saurita_MA_2A,  
+Saurita_MA_3A,  
+Saurita_MA_4A,  
+Saurita_MA_5A,  
+Saurita_MA_6A,  
+Saurita_MA_7A,  
+Saurita_MA_8A,  
+Saurita_MA_9A,  
+Saurita_SA_10C, 
+Saurita_SA_1C,  
+Saurita_SA_2C,  
+Saurita_SA_3C,  
+Saurita_SA_4C,  
+Saurita_SA_5C,  
+Saurita_SA_6C,  
+Saurita_SA_7C,  
+Saurita_SA_8C,  
+Saurita_SA_9C,  
+Saurita_TA_1D,  
+Saurita_TA_2D,  
+Saurita_TA_3D,  
+Saurita_TA_4D,  
+Saurita_TA_5D,  
+Saurita_TA_6D,  
+Saurita_TA_7D,  
+Saurita_TA_8D,  
+(END) 
+
+
+## SNP filtering for SNPs from  previous samples and newly assembled reference
+(ddocent_env) [evelyn-takyi@n045 aurita]$ curl -L -O https://github.com/jpuritz/dDocent/raw/master/scripts/pop_missing_filter.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   152  100   152    0     0    861      0 --:--:-- --:--:-- --:--:--   950
+
+100  1256  100  1256    0     0   3510      0 --:--:-- --:--:-- --:--:--  3510
+(ddocent_env) [evelyn-takyi@n045 aurita]$ chmod +x pop_missing_filter.sh
+(ddocent_env) [evelyn-takyi@n045 aurita]$ ./pop_missing_filter.sh AUdp5.recode.vcf popmap 0.5 1 AUdp5p05
+rm: cannot remove 'badloci': No such file or directory
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf AUdp5.recode.vcf
+	--keep keep.BA
+	--out BA
+	--missing-site
+
+Keeping individuals in 'keep' list
+After filtering, kept 10 out of 50 Individuals
+Outputting Site Missingness
+After filtering, kept 152902 out of a possible 152902 Sites
+Run Time = 2.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf AUdp5.recode.vcf
+	--keep keep.GA
+	--out GA
+	--missing-site
+
+Keeping individuals in 'keep' list
+After filtering, kept 10 out of 50 Individuals
+Outputting Site Missingness
+After filtering, kept 152902 out of a possible 152902 Sites
+Run Time = 2.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf AUdp5.recode.vcf
+	--keep keep.MA
+	--out MA
+	--missing-site
+
+Keeping individuals in 'keep' list
+After filtering, kept 10 out of 50 Individuals
+Outputting Site Missingness
+After filtering, kept 152902 out of a possible 152902 Sites
+Run Time = 3.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf AUdp5.recode.vcf
+	--keep keep.SA
+	--out SA
+	--missing-site
+
+Keeping individuals in 'keep' list
+After filtering, kept 10 out of 50 Individuals
+Outputting Site Missingness
+After filtering, kept 152902 out of a possible 152902 Sites
+Run Time = 3.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf AUdp5.recode.vcf
+	--keep keep.TA
+	--out TA
+	--missing-site
+
+Keeping individuals in 'keep' list
+After filtering, kept 10 out of 50 Individuals
+Outputting Site Missingness
+After filtering, kept 152902 out of a possible 152902 Sites
+Run Time = 3.00 seconds
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf AUdp5.recode.vcf
+	--exclude-positions loci.to.remove
+	--recode-INFO-all
+	--out AUdp5p05
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 35493 out of a possible 152902 Sites
+Run Time = 9.00 seconds
+(ddocent_env) [evelyn-takyi@n045 aurita]$ nano dDocent_filters
+(ddocent_env) [evelyn-takyi@n045 aurita]$ chmod +x dDocent_filters 
+(ddocent_env) [evelyn-takyi@n045 aurita]$ ./dDocent_filters AUdp5p05I.recode.vcf AUdp5p05Id
+This script will automatically filter a FreeBayes generated VCF file using criteria related to site depth,
+quality versus depth, strand representation, allelic balance at heterzygous individuals, and paired read representation.
+The script assumes that loci and individuals with low call rates (or depth) have already been removed. 
+
+Contact Jon Puritz (jpuritz@gmail.com) for questions and see script comments for more details on particular filters 
+
+mawk: cannot open AUdp5p05I.recode.vcf (No such file or directory)
+Number of sites filtered based on allele balance at heterozygous loci, locus quality, and mapping quality / Depth
+ 0 of 0 
+
+Are reads expected to overlap?  In other words, is fragment size less than 2X the read length?  Enter yes or no.
+^C
+(ddocent_env) [evelyn-takyi@n045 aurita]$ ./dDocent_filters AUdp5p05.recode.vcf AUdp5p05Id
+This script will automatically filter a FreeBayes generated VCF file using criteria related to site depth,
+quality versus depth, strand representation, allelic balance at heterzygous individuals, and paired read representation.
+The script assumes that loci and individuals with low call rates (or depth) have already been removed. 
+
+Contact Jon Puritz (jpuritz@gmail.com) for questions and see script comments for more details on particular filters 
+
+Number of sites filtered based on allele balance at heterozygous loci, locus quality, and mapping quality / Depth
+ 21554 of 35493 
+
+Are reads expected to overlap?  In other words, is fragment size less than 2X the read length?  Enter yes or no.
+no
+Number of additional sites filtered based on overlapping forward and reverse reads
+ 3907 of 13939 
+
+Is this from a mixture of SE and PE libraries? Enter yes or no.
+no
+Number of additional sites filtered based on properly paired status
+ 664 of 10032 
+
+Number of sites filtered based on high depth and lower than 2*DEPTH quality score
+ 1070 of 9368 
+
+
+                                                                                                                        
+                                             Histogram of mean depth per site                                           
+                                                                                                                        
+  800 +-+----+----+----+-----+----+----+----+-----+----+----+----+-----+----+----+----+-----+----+----+----+-----++-+   
+      | +    +    +    +     +    +    +    +     +    +    +    +     +    +    +    +     +    +    +    +     +  |   
+      |                                                   'meandepthpersite' using (bin($1,binwidth)):(1.0) ******* |   
+  700 **+                                                                                                         +-+   
+      **                                                                                                            |   
+      ***                                                                                                           |   
+  600 ***                                                                                                         +-+   
+      ***                                                                                                           |   
+      ***                                                                                                           |   
+  500 ***                                                                                                         +-+   
+      ***                                                                                                           |   
+  400 ****                                                                                                        +-+   
+      ****                                                                                                          |   
+      ****                                                                                                          |   
+  300 *****                                                                                                       +-+   
+      *****                                                                                                         |   
+      *****                                                                                                         |   
+  200 *******                                                                                                     +-+   
+      *******                                                                                                       |   
+      **********                                                                                                    |   
+  100 ***************                                                                                             +-+   
+      *****************  ******                                                                                     |   
+      ****************************************** ********** +**  +   **+    **   +    + **  +    +    +    +     +  |   
+    0 ***************************************************************************************************************   
+        12   18   24   30    36   42   48   54    60   66   72   78    84   90   96  102   108  114  120  126   132     
+                                                        Mean Depth                                                      
+                                                                                                                        
+If distrubtion looks normal, a 1.645 sigma cutoff (~90% of the data) would be 7635.52785
+The 95% cutoff would be 124
+Would you like to use a different maximum mean depth cutoff than 124, yes or no
+no
+Number of sites filtered based on maximum mean depth
+ 598 of 9368 
+
+Number of sites filtered based on within locus depth mismatch
+ 161 of 8770 
+
+Total number of sites filtered
+ 26884 of 35493 
+
+Remaining sites
+ 8609 
+
+Filtered VCF file is called Output_prefix.FIL.recode.vcf
+
+Filter stats stored in AUdp5p05Id.filterstats
+(ddocent_env) [evelyn-takyi@n045 aurita]$ vcfallelicprimitives -k -g AUdp5p05Id.FIL.recode.vcf |sed 's:\.|\.:\.\/\.:g' > AUdp5p05F.prim
+(ddocent_env) [evelyn-takyi@n045 aurita]$ vcftools --vcf AUdp5p05F.prim --recode --recode-INFO-all --remove-indels --out SNP.AUdp5p05F
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf AUdp5p05F.prim
+	--recode-INFO-all
+	--out SNP.AUdp5p05F
+	--recode
+	--remove-indels
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 9465 out of a possible 10307 Sites
+Run Time = 2.00 seconds
+(ddocent_env) [evelyn-takyi@n045 aurita]$ filter_hwe_by_pop.pl -v SNP.AUdp5p05F.recode.vcf -p popmap -c 0.5 -out
+Option out requires an argument
+Processing population: BA (10 inds)
+Processing population: GA (10 inds)
+Processing population: MA (10 inds)
+Processing population: SA (10 inds)
+Processing population: TA (10 inds)
+Outputting results of HWE test for filtered loci to 'filtered.hwe'
+Kept 9465 of a possible 9465 loci (filtered 0 loci)
+(ddocent_env) [evelyn-takyi@n045 aurita]$ source deactivate ddocent_env
+[evelyn-takyi@n045 aurita]$ source activate rad_haplotyper_env
+(rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ filter_hwe_by_pop.pl -v SNP.AUdp5p05F.recode.vcf -p popmap -c 0.5 -out SNP.AUdp5p05FHWE
+Processing population: BA (10 inds)
+Processing population: GA (10 inds)
+Processing population: MA (10 inds)
+Processing population: SA (10 inds)
+Processing population: TA (10 inds)
+Outputting results of HWE test for filtered loci to 'filtered.hwe'
+Kept 9465 of a possible 9465 loci (filtered 0 loci)
+(rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ rad_haplotyper.pl  -v SNP.AUdp5p05FHWE.recode.vcf  -p popmap -r reference.fasta -x 10 -mp 5
+   (rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ cp stats.out stats.out.HF
+(rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ mawk '/Missi/' stats.out.HF | mawk '$9 > 30' > HF.missing
+
+(rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ mawk '/para/' stats.out.HF > HF.para
+(rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ cat HF.para HF.missing > HF.loci.tofilter
+(rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ curl -L -O https://github.com/jpuritz/dDocent/raw/master/scripts/remove.bad.hap.loci.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   153  100   153    0     0    671      0 --:--:-- --:--:-- --:--:--   671
+100   250  100   250    0     0    642      0 --:--:-- --:--:-- --:--:--   642
+(rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ chmod +x remove.bad.hap.loci.sh
+(rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ ./remove.bad.hap.loci.sh HF.loci.tofilter SNP.AUdp5p05FHWE.recode.vcf
+^C
+(rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ source deactivate rad_haplotyper_env
+[evelyn-takyi@n045 aurita]$ source activate ddocent_env
+(ddocent_env) [evelyn-takyi@n045 aurita]$ ./remove.bad.hap.loci.sh HF.loci.tofilter SNP.AUdp5p05FHWE.recode.vcf
+(ddocent_env) [evelyn-takyi@n045 aurita]$ less SNP.AUdp5p05FHWE.filtered.vcf 
+(ddocent_env) [evelyn-takyi@n045 aurita]$ vcftools --vcf SNP.AUdp5p05FHWE.recode.vcf --maf 0.05 --recode --recode-INFO-all --out SNP.AUdp5p05FHWEmaf05
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf SNP.AUdp5p05FHWE.recode.vcf
+	--recode-INFO-all
+	--maf 0.05
+	--out SNP.AUdp5p05FHWEmaf05
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 5790 out of a possible 9465 Sites
+Run Time = 2.00 seconds
+(ddocent_env) [evelyn-takyi@n045 aurita]$ ^C
+(ddocent_env) [evelyn-takyi@n045 aurita]$ vcftools --vcf SNP.AUdp5p05FHWE.filtered.vcf --maf 0.05 --recode --recode-INFO-all --out SNP.AUdp5p05FHWEmaf05
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf SNP.AUdp5p05FHWE.filtered.vcf
+	--recode-INFO-all
+	--maf 0.05
+	--out SNP.AUdp5p05FHWEmaf05
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 1713 out of a possible 3881 Sites
+Run Time = 1.00 seconds
+(ddocent_env) [evelyn-takyi@n045 aurita]$ vcftools --vcf SNP.AUdp5p05FHWEmaf05.recode.vcf --max-alleles 2 --recode --recode-INFO-all --out SNP.AUdp5p05FHWE2A
+
+VCFtools - 0.1.15
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf SNP.AUdp5p05FHWEmaf05.recode.vcf
+	--recode-INFO-all
+	--max-alleles 2
+	--out SNP.AUdp5p05FHWE2A
+	--recode
+
+After filtering, kept 50 out of 50 Individuals
+Outputting VCF file...
+After filtering, kept 1691 out of a possible 1713 Sites
+Run Time = 1.00 seconds
+(ddocent_env) [evelyn-takyi@n045 aurita]$ source deactivate ddocent_env
+[evelyn-takyi@n045 aurita]$ source activate rad_haplotyper_env
+(rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ rad_haplotyper.pl -v SNP.AUdp5p05FHWE2A.recode.vcf  -p popmap -r reference.fasta -x 15 -mp 5 -g Final_Haps.gen
+
+(rad_haplotyper_env) [evelyn-takyi@n045 aurita]$ less Final_Haps.gen 
+
+dDocent_Contig_925
+dDocent_Contig_12973
+dDocent_Contig_14080
+dDocent_Contig_13174
+dDocent_Contig_6794
+dDocent_Contig_14245
+dDocent_Contig_6584
+dDocent_Contig_1273
+dDocent_Contig_12407
+dDocent_Contig_7212
+dDocent_Contig_11149
+dDocent_Contig_14792
+POP
+BA_B10, 001002  001002  001002  001002  002001  001002  003003  001002  001002  001002  001002  001002  001002  001002  002002  001002  002001  002002  001002  001
+002  001002  001002  001002  001001  001002  001002  001001  002002  001002  001002  001002  001002  001002  001002  002002  001001  001001  002001  001002  001001
+  001001  001002  001002  001001  001002  002002  001002  001002  001002  001002  001001  001002  001002  001002  002001  001002  001002  001002  001002  001001  0
+01002  001002  001002  001001  001002  001001  001002  001002  001002  001002  001002  001002  002002  001001  001002  002001  001002  001002  001002  001002  0010
+02  001002  001002  001002  001002  001001  001002  001002  002001  001002  001002  001002  
+BA_B1,  001001  001002  001002  001002  002002  002001  001001  001002  001002  001002  001001  001002  001001  001002  002002  002002  001002  001002  000000  001002  001002  001002  001002  000000  001001  001002  001001  002002  001002  001002  001002  001002  001002  001002  001002  000000  001001  002001  001002  001001  001001  001002  001002  001001  001001  002002  001002  001002  001002  001001  001001  001002  001002  001001  001002  001002  001002  001001  001002  001001  001002  001002  002002  001002  001002  001001  001002  001002  001002  001002  001002  001002  000000  001001  001002  002001  001002  001002  002002  001002  001002  001002  001002  001002  001002  001001  001002  001002  002001  001002  000000  001002  
+BA_B2,  001002  001002  001002  001002  001002  002001  001001  001002  001002  001002  001002  001002  001002  001002  002002  001002  001002  001002  001002  001002  001002  001002  001002  001001  001002  001002  001001  002002  001002  001002  001002  001002  001002  001002  001002  001001  001001  002001  001002  001001  001001  001002  001002  002002  001002  002002  001002  001002  001002  001002  001001  001002  001002  001002  001002  001001  001002  001002  001002  001001  001002  001002  001002  001001  001002  001001  001002  002001  001002  001002  001002  001002  002002  001001  001002  002001  001002  001002  001002  001002  001002  001002  001002  001002  001002  001001  001002  001002  001002  001002  001002  001002  
+BA_B3,  001002  001002  001002  001002  002001  001002  001001  001002  001002  001002  001002  001002  001002  001002  002002  001002  001002  001002  001002  001002  001002  001002  001002  001002  001002  001002  001001  001002  001002  001002  001002  001002  001002  001002  002002  001001  001001  001002  001002  001001  
